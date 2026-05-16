@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kalkulator</title>
+    <style>
+      body {
+        background-color: #1a1a2e;
+        font-family: Arial;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .kartu {
+        background-color: #16213e;
+        border-radius: 20px;
+        padding: 20px;
+        width: 300px;
+      }
+      #layar {
+        background-color: #0f3460;
+        color: white;
+        font-size: 36px;
+        text-align: right;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        word-break: break-all;
+      }
+      .tombol-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+      button {
+        background-color: #0f3460;
+        color: white;
+        border: none;
+        padding: 20px;
+        font-size: 20px;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #e94560;
+      }
+      .sama {
+        background-color: #e94560;
+        grid-row: span 2;
+      }
+      .nol {
+        grid-column: span 2;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="kartu">
+      <div id="layar">0</div>
+      <div class="tombol-grid">
+        <button onclick="hapus()">C</button>
+        <button onclick="tambahAngka('%')">%</button>
+        <button onclick="tambahAngka('/')">÷</button>
+        <button onclick="tambahAngka('*')">×</button>
+
+        <button onclick="tambahAngka('7')">7</button>
+        <button onclick="tambahAngka('8')">8</button>
+        <button onclick="tambahAngka('9')">9</button>
+        <button onclick="tambahAngka('-')">−</button>
+
+        <button onclick="tambahAngka('4')">4</button>
+        <button onclick="tambahAngka('5')">5</button>
+        <button onclick="tambahAngka('6')">6</button>
+        <button onclick="tambahAngka('+')">+</button>
+
+        <button onclick="tambahAngka('1')">1</button>
+        <button onclick="tambahAngka('2')">2</button>
+        <button onclick="tambahAngka('3')">3</button>
+        <button class="sama" onclick="hitung()">=</button>
+
+        <button class="nol" onclick="tambahAngka('0')">0</button>
+        <button onclick="tambahAngka('.')">.</button>
+      </div>
+    </div>
+    <script>
+      var input = "";
+
+      function tambahAngka(angka) {
+        input += angka;
+        document.getElementById("layar").innerHTML = input;
+      }
+
+      function hitung() {
+        try {
+          var hasil = eval(input);
+          document.getElementById("layar").innerHTML = hasil;
+          input = hasil.toString();
+        } catch {
+          document.getElementById("layar").innerHTML = "Error";
+          input = "";
+        }
+      }
+
+      function hapus() {
+        input = "";
+        document.getElementById("layar").innerHTML = "0";
+      }
+    </script>
+  </body>
+</html>
